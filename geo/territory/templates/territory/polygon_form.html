@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polygon form</title>
+</head>
+<body>
+    <form action= "{% url  'polygon_form' %}" method="post">
+        {% csrf_token %}
+        <p><label for="polygon_name">Полигон: <span id="default_polygon_name">Имя полигона</span> </label></p>
+        <input id="polygon_name" type="text" name="polygon_name">
+        <p><label for="polygon_coordinates">Координаты полигона: <span id="default_polygon_coordinates">[(0,1),(1,1)]</span></label></p>
+        <textarea id="polygon_coordinates" name="polygon_coordinates" rows="4" cols="50">Введите координаты</textarea>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+
+<input type="button" onclick="addText()" value="Добавить">
+<script language = "JavaScript">
+    function addText() {
+        var polygon_name_node  = document.getElementById('default_polygon_name');
+        var polygon_name = polygon_name_node.textContent || polygon_name_node.innerText;
+        document.getElementById('polygon_name').value = polygon_name;
+
+        var polygon_coordinates_node  = document.getElementById('default_polygon_coordinates');
+        var polygon_coordinates = polygon_coordinates_node.textContent || polygon_coordinates_node.innerText;
+        document.getElementById('polygon_coordinates').value = polygon_coordinates;
+    }
+</script>
+</body>
+</html>

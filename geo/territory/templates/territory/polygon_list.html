@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Polygon list</title>
+</head>
+<body>
+<h1> Список полигонов </h1>
+{% if polygon_list %}
+    <ul>
+    {% for polygon in polygon_list %}
+      <li>  {{ polygon.name }} - {{polygon.coordinates}} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polygons are available.</p>
+{% endif %}
+</body>
+</html>
