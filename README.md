@@ -27,6 +27,8 @@
 pip install -r path_to_requirements/requirements
 ```
 
+## Запуск и тестирование
+
 ### Запуск проекта 
 Запустить проект
 ```
