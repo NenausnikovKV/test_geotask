@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from .models import Polygon
+from .models import PolygonModel
 
 
 class PolygonSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name="polygon-detail")
 
     class Meta:
-        model = Polygon
-        fields = ['url', 'id', 'name', "coordinates"]
+        model = PolygonModel
+        fields = ['url', 'id', 'name', "polygon", "coordinate_line", "antimeridian"]

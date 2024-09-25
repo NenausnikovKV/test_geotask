@@ -1,12 +1,12 @@
 from django.contrib.gis.db import models as gis_models
-from django.contrib.gis.gdal.geometries import Polygon
-from django.db import models
+# from django.contrib.gis.geos import Point, LineString
 
 
-class Polygon(models.Model):
-    name = models.CharField(max_length=120)
-    # polygon = gis_models.PolygonField(default=Polygon(((0, 0), (0, 1), (1, 1), (1, 0), (0, 0)), ((0.4, 0.4), (0.4, 0.6), (0.6, 0.6), (0.6, 0.4), (0.4, 0.4))))
-    polygon = gis_models.PolygonField()
+class PolygonModel(gis_models.Model):
+    name = gis_models.CharField(max_length=120, default="Неизвестный полигон")
+    polygon = gis_models.PolygonField(null=True)
+    coordinate_line = gis_models.CharField(max_length=200, null=True)
+    antimeridian = gis_models.BooleanField(null=True)
 
     def __str__(self):
         return self.name

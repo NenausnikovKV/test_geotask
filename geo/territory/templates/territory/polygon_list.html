@@ -9,7 +9,7 @@
 {% if polygon_list %}
     <ul>
     {% for polygon in polygon_list %}
-      <li>  {{ polygon.name }} - {{polygon.coordinates}} </li>
+      <li> Имя полигона: {{polygon.name}}. Координаты полигона: {{polygon.polygon.coords}}. Захватывает ли антимеридиан: {{polygon.antimeridian}} </li>
     {% endfor %}
     </ul>
 {% else %}

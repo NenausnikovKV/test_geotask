@@ -5,25 +5,70 @@
     <title>Polygon form</title>
 </head>
 <body>
+    <p>
+        <label for="polygon_name">Имя полигона: </label>
+        <input id="polygon_name" type="text" name="polygon_name" placeholder="Имя полигона">
+    </p>
+    <br>
+    <p>
+        <label for="latitude_1">Широта первой точки: </label>
+        <input id="latitude_1" type="text" name="latitude_1" placeholder="Например 1.0">
+    </p>
+    <p>
+        <label for="longitude_1">Долгота первой точки: </label>
+        <input id="longitude_1" type="text" name="longitude_1" placeholder="Например 2.0">
+    </p>
+    <br>
+    <p>
+        <label for="latitude_2">Широта второй точки: </label>
+        <input id="latitude_2" type="text" name="latitude_2" placeholder="Например 1.0">
+    </p>
+    <p>
+        <label for="longitude_2">Долгота второй точки: </label>
+        <input id="longitude_2" type="text" name="longitude_2" placeholder="Например  3.5">
+    </p>
+    <br>
+    <p>
+        <label for="latitude_3">Широта третьей точки: </label>
+        <input id="latitude_3" type="text" name="latitude_3" placeholder="Например  2.4">
+    </p>
+    <p>
+        <label for="longitude_3">Долгота третьей точки: </label>
+        <input id="longitude_3" type="text" name="longitude_3" placeholder="Например  3.5">
+    </p>
+    <br>
+    <input type="button" onclick="addText()" value="Добавить">
     <form action= "{% url  'polygon_form' %}" method="post">
         {% csrf_token %}
-        <p><label for="polygon_name">Полигон: <span id="default_polygon_name">Имя полигона</span> </label></p>
-        <input id="polygon_name" type="text" name="polygon_name">
-        <p><label for="polygon_coordinates">Координаты полигона: <span id="default_polygon_coordinates">[(0,1),(1,1)]</span></label></p>
-        <textarea id="polygon_coordinates" name="polygon_coordinates" rows="4" cols="50">Введите координаты</textarea>
+        <p><label for="polygon_data">Координаты полигона:</label></p>
+        <textarea id="polygon_data" name="polygon_data" rows="4" cols="50" placeholder="Введите координаты"></textarea>
         <p><input type="submit" value="Submit"></p>
     </form>
 
-<input type="button" onclick="addText()" value="Добавить">
 <script language = "JavaScript">
     function addText() {
-        var polygon_name_node  = document.getElementById('default_polygon_name');
-        var polygon_name = polygon_name_node.textContent || polygon_name_node.innerText;
-        document.getElementById('polygon_name').value = polygon_name;
+        var polygon_name  = document.getElementById('polygon_name').value;
+        point_1 = [
+            parseFloat(document.getElementById('latitude_1').value),
+            parseFloat(document.getElementById('longitude_1').value)
+        ];
+        point_2 = [
+            parseFloat(document.getElementById('latitude_2').value),
+            parseFloat(document.getElementById('longitude_2').value)
+        ];
+        point_3 = [
+            parseFloat(document.getElementById('latitude_3').value),
+            parseFloat(document.getElementById('longitude_3').value)
+        ];
+        polygon_data = {
+            name: polygon_name,
+            coordinates: [point_1, point_2, point_3, point_1]
+            };
+        document.getElementById('polygon_data').value = JSON.stringify(polygon_data);
 
-        var polygon_coordinates_node  = document.getElementById('default_polygon_coordinates');
-        var polygon_coordinates = polygon_coordinates_node.textContent || polygon_coordinates_node.innerText;
-        document.getElementById('polygon_coordinates').value = polygon_coordinates;
+        // var polygon_coordinates_node  = document.getElementById('default_polygon_coordinates');
+        // var polygon_coordinates = polygon_coordinates_node.textContent || polygon_coordinates_node.innerText;
+        // document.getElementById('polygon_data').value = polygon_coordinates;
     }
 </script>
 </body>
