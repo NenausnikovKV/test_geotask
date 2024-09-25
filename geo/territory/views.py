@@ -4,7 +4,7 @@ from django.http import Http404
 from django.shortcuts import render
 
 from .coordinates import RingCoordinates
-from .models import PolygonModel
+from .models import PolygonModel, POLYGON_DEFAULT_NAME
 
 
 def index(request):
@@ -30,6 +30,8 @@ def polygon_form(request):
             polygon_data_json = request.POST.get("polygon_data")
             polygon_data = json.loads(polygon_data_json)
             polygon_name = polygon_data.get("name")
+            if not polygon_name:
+                polygon_name = POLYGON_DEFAULT_NAME
             polygon_coordinates = polygon_data.get("coordinates")
             ring_coordinates = RingCoordinates.create_from_coordinate_lists(*polygon_coordinates)
 

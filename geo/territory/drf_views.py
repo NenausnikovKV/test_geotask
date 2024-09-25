@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .coordinates import RingCoordinates
-from .models import PolygonModel
+from .models import PolygonModel, POLYGON_DEFAULT_NAME
 from .serializers import PolygonSerializer
 
 
@@ -22,6 +22,8 @@ class PolygonList(APIView):
         polygon_coordinates = request.data.get("coordinates")
         ring_coordinates = RingCoordinates.create_from_coordinate_lists(*polygon_coordinates)
 
+        if not polygon_name:
+            polygon_name = POLYGON_DEFAULT_NAME
         data = {
             "name": polygon_name,
             "polygon": ring_coordinates.polygon,
